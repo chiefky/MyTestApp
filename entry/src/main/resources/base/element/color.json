@@ -1,0 +1,216 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "B0",
+      "value": "#FF1A66FF"
+    },
+    {
+      "comment": "标准色库: 美家品牌色",
+      "name": "B1",
+      "value": "#9B1C23"
+    },
+    {
+      "comment": "标准色库: 标题/主文本",
+      "name": "F1",
+      "value": "#222222"
+    },
+    {
+      "comment": "标准色库: 辅助文本",
+      "name": "F2",
+      "value": "#999999"
+    },
+    {
+      "comment": "标准色库: 暗文文本",
+      "name": "F3",
+      "value": "#CCCCCC"
+    },
+    {
+      "comment": "标准色库: 白色文本",
+      "name": "F4",
+      "value": "#FFFFFF"
+    },
+    {
+      "comment": "标准色库: 次文本",
+      "name": "F5",
+      "value": "#555555"
+    },
+    {
+      "comment": "标准色库: 可操作未选色",
+      "name": "F6",
+      "value": "#777777"
+    },
+    {
+      "comment": "标准色库: 主背景",
+      "name": "BG1",
+      "value": "#F5F5F5"
+    },
+    {
+      "comment": "标准色库: 次背景",
+      "name": "BG2",
+      "value": "#FFFFFF"
+    },
+    {
+      "comment": "标准色库: 卡片底色",
+      "name": "BG3",
+      "value": "#F8F8F8"
+    },
+    {
+      "comment": "标准色库: 分割线",
+      "name": "D1",
+      "value": "#E1E1E3"
+    },
+    {
+      "comment": "标准色库: 房源价格",
+      "name": "FC1",
+      "value": "#E62222"
+    },
+    {
+      "comment": "标准色库: 气泡",
+      "name": "FC2",
+      "value": "#F44736"
+    },
+    {
+      "comment": "标准色库: 辅助按钮",
+      "name": "A1",
+      "value": "#3BC48B"
+    },
+    {
+      "comment": "标准色库: 辅助按钮（美家）",
+      "name": "A2",
+      "value": "#CD9D6A"
+    },
+    {
+      "comment": "标准色库: 好房主题色",
+      "name": "GH",
+      "value": "#D53C3C"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "222222",
+      "value": "#222222"
+    },
+    {
+      "name": "c19760",
+      "value": "#c19760"
+    },
+    {
+      "name": "e62222",
+      "value": "#e62222"
+    },
+    {
+      "name": "555555",
+      "value": "#555555"
+    },
+    {
+      "name": "f2ffffff",
+      "value": "#f2ffffff"
+    },
+    {
+      "name": "99000000",
+      "value": "#99000000"
+    },
+    {
+      "name": "999999",
+      "value": "#999999"
+    },
+    {
+      "name": "b7701d",
+      "value": "#b7701d"
+    },
+    {
+      "name": "666666",
+      "value": "#666666"
+    },
+    {
+      "name": "f3f6fb",
+      "value": "#f3f6fb"
+    },
+    {
+      "name": "ebebeb",
+      "value": "#ebebeb"
+    },
+    {
+      "name": "c5c5c5",
+      "value": "#c5c5c5"
+    },
+    {
+      "name": "777777",
+      "value": "#777777"
+    },
+    {
+      "name": "ffffff",
+      "value": "#ffffff"
+    },
+    {
+      "name": "f5f5f5",
+      "value": "#f5f5f5"
+    },
+    {
+      "name": "f8f8f8",
+      "value": "#f8f8f8"
+    },
+    {
+      "name": "e1e1e3",
+      "value": "#e1e1e3"
+    },
+    {
+      "name": "ec4444",
+      "value": "#ec4444"
+    },
+    {
+      "name": "1a66ff",
+      "value": "#1a66ff"
+    },
+    {
+      "name": "e2e2e2",
+      "value": "#e2e2e2"
+    },
+    {
+      "name": "f0f0f0",
+      "value": "#f0f0f0"
+    },
+    {
+      "name": "141A66ff",
+      "value": "#141A66ff"
+    },
+    {
+      "name": "f7f7f7",
+      "value": "#f7f7f7"
+    },
+    {
+      "name": "ff5740",
+      "value": "#ff5740"
+    },
+    {
+      "name": "0f00ae66",
+      "value": "#0f00ae66"
+    },
+    {
+      "name": "dddddd",
+      "value": "#dddddd"
+    },
+    {
+      "name": "eff5fe",
+      "value": "#eff5fe"
+    },
+    {
+      "name": "4e678d",
+      "value": "#4E678D"
+    },
+    {
+      "name": "f1f5fa",
+      "value": "#F1F5FA"
+    },
+    {
+      "name": "d53c3c",
+      "value": "#d53c3c"
+    }
+  ]
+}
