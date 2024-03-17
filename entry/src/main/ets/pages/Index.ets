@@ -37,7 +37,7 @@ struct Index {
       }
     }
   })
-  @StorageLink('MyDialogController') diaController: MyDialogController = new MyDialogController({
+  @StorageLink('MyDialogController') diaController: MyDialogController = new MyDialogController(this.myAlert,{
     builder: this.myAlert,
     cancel: this.onCancel,
     confirm: this.onAccept
@@ -80,6 +80,18 @@ struct Index {
             onCancel: this.viewShowOrHidden.bind(this)
           }).backgroundColor('#ff9fff').width('100%').height(100)
         }
+      }.width('90%')
+
+      /*使用封装后subwindow显示弹窗*/
+      Column() {
+        Text("使用封装subwindow显示弹窗").margin({ top: 20 }).width('100%').textAlign(TextAlign.Center)
+        Button('加载DialogEmptyPage')
+          .width('100%')
+          .height(40)
+          .onClick(() => {
+            console.log("❀：哈哈哈，大猪头~~~~")
+            this.diaController.open()
+          })
       }.width('90%')
 
       /*使用封装后subwindow显示弹窗*/

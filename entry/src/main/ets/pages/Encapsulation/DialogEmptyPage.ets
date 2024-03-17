@@ -10,6 +10,7 @@ struct DialogEmptyPage {
   @State heightSize: number = 100
   @State isShow: boolean = false
   @StorageLink('MyDialogController') controller?: MyDialogController = undefined
+  @BuilderParam child?: () => void;
 
   @Builder
   subviewsBuilder() {
@@ -23,14 +24,21 @@ struct DialogEmptyPage {
     .padding({ top: 10, bottom: 10 })
   }
 
+  aboutToAppear(): void {
+    if (typeof this.controller?.builder === 'function') {
+      this.child = this.controller.builder;
+    }
+  }
+
   build() {
     Column() {
-      this.subviewsBuilder()
+      if (typeof this.child === 'function') {
+        this.child()
+      }
     }
     // .backgroundColor('#889234')
     .width('100%').height('100%')
   }
-
 
   close() {
     this.controller?.close()
@@ -39,26 +47,23 @@ struct DialogEmptyPage {
 
 
 export interface MyDialogControllerOption {
-  builder: CustomBuilder
+  builder: () => void
   cancel: () => void
   confirm: () => void
-
 }
-
 
 export class MyDialogController {
   CustomDialogName: string = 'WINDOW_DIALOG_CUSTOM';
   options: MyDialogControllerOption
-  builder: CustomBuilder
-  component:()=>void
+  builder: () => void
+
   // constructor(options: MyDialogControllerOption) {
   //   this.options = options
   //  this.customBuilder = options.builder
   // }
-  constructor(component:()=>void, options: MyDialogControllerOption) {
+  constructor(builder: () => void, options: MyDialogControllerOption) {
     this.options = options
-    this.builder = options.builder
-    this.component = component
+    this.builder = builder
   }
 
   open() {
