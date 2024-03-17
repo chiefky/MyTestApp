@@ -2,7 +2,7 @@ import { MyAlertComponent } from "../MyAlertComponent";
 import { Position, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+import display from '@ohos.display'
 @Entry
 @Component
 struct DialogEmptyPage {
@@ -12,18 +12,6 @@ struct DialogEmptyPage {
 
   controller?: MyDialogController = undefined
   @BuilderParam child?: () => void;
-
-  // @Builder
-  // subviewsBuilder() {
-  //   Row({ space: 5 }) {
-  //     // Text('Hello World!').width(200).height(60).backgroundColor('#ffb86565')
-  //     MyAlertComponent().width(200).height(60)
-  //     Button("close").width(80).height(60).onClick(()=>{
-  //       this.close()
-  //     })
-  //   }
-  //   .padding({ top: 10, bottom: 10 })
-  // }
 
   aboutToAppear(): void {
     let storage = LocalStorage.getShared();
@@ -35,7 +23,6 @@ struct DialogEmptyPage {
         this.child = this.controller.builder;
       }
       this.controller.pageClose = this.closePage.bind(this)
-      // this.controller.pageOpen = this.openPage.bind(this)
     }
   }
 
@@ -47,25 +34,19 @@ struct DialogEmptyPage {
         }
       }
     }
-    // .backgroundColor('#889234')
+    .backgroundColor('#008a8787')
     .width('100%').height('100%')
   }
 
   onPageShow(): void {
-    animateTo({ duration: 600 }, () => {
+    animateTo({ duration: 300 }, () => {
       this.isShow = true
     })
 
   }
 
-  // openPage(){
-  //   this.isShow = !this.isShow
-  //   animateTo({ duration: 600 }, () => {
-  //   })
-  // }
-
   closePage() {
-    animateTo({ duration: 600 }, () => {
+    animateTo({ duration: 300 }, () => {
       this.isShow = !this.isShow
     })
   }
@@ -112,14 +93,15 @@ export class MyDialogController {
         sub_windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
-        sub_windowClass.moveWindowTo(0, 180, (err) => {
+        let screen = display.getDefaultDisplaySync()
+        sub_windowClass.moveWindowTo(screen.width*0.1, 180, (err) => {
           if (err.code) {
             console.error('Failed to move the window. Cause:' + JSON.stringify(err));
             return;
           }
           console.info('Succeeded in moving the window.');
         });
-        sub_windowClass.resize(1300, 800, (err) => {
+        sub_windowClass.resize(screen.width, 250, (err) => {
           if (err.code) {
             console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
             return;
@@ -136,7 +118,6 @@ export class MyDialogController {
             return;
           }
           console.info('Succeeded in loading the content.');
-
         });
         // 3.显示子窗口。
         sub_windowClass?.showWindow((err) => {
@@ -154,13 +135,12 @@ export class MyDialogController {
   }
 
   close() {
-    animateTo({
-      delay: 300, onFinish: () => {
-        /*销毁window*/
+    animateTo({duration:200,onFinish: () => {
+        /*后 销毁window*/
         this.destroy()
       }
     }, () => {
-      /*隐藏子视图*/
+      /*先 隐藏子视图*/
       if (this.pageClose) {
         this.pageClose()
       }
