@@ -37,13 +37,9 @@ struct Index {
       }
     }
   })
-  @StorageLink('MyDialogController') diaController: MyDialogController = new MyDialogController(this.myAlert,{
-    builder: this.myAlert,
-    cancel: this.onCancel,
-    confirm: this.onAccept
-  })
-
+  diaController: MyDialogController = new MyDialogController(this.myAlert.bind(this), this.onCancel)
   onCancel() {
+    this.diaController.close()
     console.info('Callback when the first button is clicked')
   }
 
@@ -57,7 +53,9 @@ struct Index {
 
   @Builder
   myAlert() {
-    BrokerToast()
+    BrokerToast({
+      cancel: this.onCancel.bind(this)
+    }).width('100%').height(100)
   }
 
   build() {

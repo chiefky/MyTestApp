@@ -35,12 +35,13 @@ struct Index {
       }
     }
   })
+  diaController: MyDialogController = new MyDialogController(this.myAlert, this.onCancel)
 
- @StorageLink('MyDialogController') diaController:MyDialogController = new MyDialogController({
-    builder: this.myAlert,
-    cancel: this.onCancel,
-    confirm: this.onAccept
-  })
+  // diaController:MyDialogController = new MyDialogController({
+  //    builder: this.myAlert,
+  //    cancel: this.onCancel,
+  //    confirm: this.onAccept
+  //  })
 
   onCancel() {
     console.info('Callback when the first button is clicked')
@@ -62,20 +63,20 @@ struct Index {
   build() {
     Column({ space: 30 }) {
       /*使用subwindow显示弹窗*/
-     Column(){
-       Text("使用subwindow显示弹窗,").margin({top:20}).width('100%').textAlign(TextAlign.Center)
-       Button('加载EmptyPage ')
-         .width('100%')
-         .height(40)
-         .onClick(() => {
-           console.log("❀：哈哈哈，大猪头~~~~")
-           this.creatSubWindowByWindow()
-         })
-     }.width('90%')
+      Column() {
+        Text("使用subwindow显示弹窗,").margin({ top: 20 }).width('100%').textAlign(TextAlign.Center)
+        Button('加载EmptyPage ')
+          .width('100%')
+          .height(40)
+          .onClick(() => {
+            console.log("❀：哈哈哈，大猪头~~~~")
+            this.creatSubWindowByWindow()
+          })
+      }.width('90%')
 
       /*使用封装后subwindow显示弹窗*/
-      Column(){
-        Text("使用封装subwindow显示弹窗").margin({top:20}).width('100%').textAlign(TextAlign.Center)
+      Column() {
+        Text("使用封装subwindow显示弹窗").margin({ top: 20 }).width('100%').textAlign(TextAlign.Center)
         Button('加载DialogEmptyPage')
           .width('100%')
           .height(40)

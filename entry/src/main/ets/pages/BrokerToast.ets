@@ -42,8 +42,8 @@ export default struct BrokerToast {
   // @Link inputValue: string
   // controller: CustomDialogController
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
-  // cancel: () => void = ()=>{}
-  // confirm: () => void =()=>{}
+  cancel?: () => void
+  confirm: () => void =()=>{}
 
 
   build() {
@@ -59,8 +59,9 @@ export default struct BrokerToast {
         .fontSize(12)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          // this.controller.close()
-          // this.cancel()
+          if (typeof this.cancel === 'function') {
+            this.cancel()
+          }
         })
         .borderRadius(4)
         .width(60)
@@ -73,7 +74,10 @@ export default struct BrokerToast {
     .padding({ top: 10, bottom: 10 })
     .justifyContent(FlexAlign.Start)
     .alignItems(VerticalAlign.Center)
-
+    // 组件添加时从底部滑出，透明度从0到1.0
+    .transition({ type: TransitionType.Insert, translate: { x: 0, y: -500, z: 0 }, opacity: 1.0 })
+    // 组件移除从底部滑出，透明度从1.0到0
+    .transition({ type: TransitionType.Delete, translate: { x: 0, y: -500, z: 0 }, opacity: 0 })
     // dialog默认的borderRadius为24vp，如果需要使用border属性，请和borderRadius属性一起使用。
   }
 }
