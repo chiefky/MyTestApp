@@ -142,7 +142,7 @@ struct Index {
           console.info('Succeeded in changing the window size.');
         });
         // 3.为子窗口加载对应的目标页面。
-        sub_windowClass.setUIContent("pages/EmptyPage", (err) => {
+        sub_windowClass.setUIContent("pages/tmp/EmptyPage", (err) => {
           if (err.code) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             return;

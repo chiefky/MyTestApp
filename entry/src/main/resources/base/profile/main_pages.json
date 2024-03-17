@@ -3,7 +3,7 @@
     "pages/Index",
     "pages/CustomDialogUser",
     "pages/BrokerToast",
-    "pages/EmptyPage",
+    "pages/tmp/EmptyPage",
     "pages/Encapsulation/DialogEmptyPage"
   ]
 }

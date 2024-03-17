@@ -2,8 +2,8 @@ import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
 import { BusinessError } from '@ohos.base';
-import CustomDialogUser from "./CustomDialogUser";
-import { ToastController } from "./ToastController";
+import CustomDialogUser from "../CustomDialogUser";
+import { ToastController } from "../ToastController";
 import promptAction from '@ohos.promptAction';
 
 @Entry
@@ -59,7 +59,7 @@ struct IndexTest {
                 console.info('Succeeded in changing the window size.');
               });
               // 3.为子窗口加载对应的目标页面。
-              sub_windowClass.setUIContent("pages/EmptyPage", (err) => {
+              sub_windowClass.setUIContent("pages/tmp/EmptyPage", (err) => {
                 if (err.code) {
                   console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                   return;

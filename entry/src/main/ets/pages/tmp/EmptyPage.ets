@@ -1,6 +1,6 @@
-import { MyAlertComponent } from "./MyAlertComponent";
+import { MyAlertComponent } from "../MyAlertComponent";
 import { window } from '@kit.ArkUI';
-import { MyDialogController } from './Encapsulation/DialogEmptyPage';
+import { MyDialogController } from '../Encapsulation/DialogEmptyPage';
 
 @Entry
 @Component
