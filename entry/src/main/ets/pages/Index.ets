@@ -8,6 +8,7 @@ import promptAction from '@ohos.promptAction';
 import BrokerToast from './BrokerToast';
 import { Position } from '@kit.ArkUI';
 import { MyDialogController } from './Encapsulation/DialogEmptyPage';
+import { MyAlertComponent } from './MyAlertComponent';
 
 let sub_windowClass: window.Window | undefined = undefined;
 
@@ -17,6 +18,7 @@ struct Index {
   @State message: string = '点击我啊~~'
   @State textValue: string = ''
   @State inputValue: string = 'click me'
+  @State isShow: boolean = false
   subwindowController: CustomDialogController = new CustomDialogController({
     builder: this.myAlert,
     cancel: this.exitApp,
@@ -35,8 +37,7 @@ struct Index {
       }
     }
   })
-
- @StorageLink('MyDialogController') diaController:MyDialogController = new MyDialogController({
+  @StorageLink('MyDialogController') diaController: MyDialogController = new MyDialogController({
     builder: this.myAlert,
     cancel: this.onCancel,
     confirm: this.onAccept
@@ -60,23 +61,30 @@ struct Index {
   }
 
   build() {
-    Column({ space: 30 }) {
+    Column({ space: 10 }) {
       /*使用subwindow显示弹窗*/
-     Column(){
-       Text("使用subwindow显示弹窗,").margin({top:20}).width('100%').textAlign(TextAlign.Center)
-       Button('加载EmptyPage ')
-         .width('100%')
-         .height(40)
-         .onClick(() => {
-           console.log("❀：哈哈哈，大猪头~~~~")
-           this.creatSubWindowByWindow()
-           this.showWindow()
-         })
-     }.width('90%')
+      Stack() {
+        Column() {
+          Text("使用普通view显示弹窗,").margin({ top: 20 }).width('100%').textAlign(TextAlign.Center)
+          Button(this.isShow ? '隐藏' : "显示")
+            .width('100%')
+            .height(40)
+            .onClick(() => {
+              console.log("❀：哈哈哈，大猪头~~~~")
+              this.viewShowOrHidden()
+            })
+        }
+
+        if (this.isShow) {
+          MyAlertComponent({
+            onCancel: this.viewShowOrHidden.bind(this)
+          }).backgroundColor('#ff9fff').width('100%').height(100)
+        }
+      }.width('90%')
 
       /*使用封装后subwindow显示弹窗*/
-      Column(){
-        Text("使用封装subwindow显示弹窗").margin({top:20}).width('100%').textAlign(TextAlign.Center)
+      Column() {
+        Text("使用封装subwindow显示弹窗").margin({ top: 20 }).width('100%').textAlign(TextAlign.Center)
         Button('加载DialogEmptyPage')
           .width('100%')
           .height(40)
@@ -108,63 +116,10 @@ struct Index {
     .height('100%')
   }
 
-  creatSubWindowByWindow() {
-    let context = getContext(this) as common.UIAbilityContext;
-    let config: window.Configuration = {
-      name: "MyAlertWindow",
-      windowType: window.WindowType.TYPE_DIALOG,
-      ctx: context
-    };
-    try {
-      // 1.创建应用子窗口。
-      window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-          return;
-        }
-
-        sub_windowClass = data;
-        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
-        sub_windowClass.moveWindowTo(0, 80, (err) => {
-          if (err.code) {
-            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in moving the window.');
-        });
-        sub_windowClass.resize(1300, 200, (err) => {
-          if (err.code) {
-            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in changing the window size.');
-        });
-        // 3.为子窗口加载对应的目标页面。
-        sub_windowClass.setUIContent("pages/tmp/EmptyPage", (err) => {
-          if (err.code) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-
-        });
-        sub_windowClass?.showWindow((err) => {
-          if (err.code) {
-            console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in showing the window.');
-        });
-      });
-    } catch (exception) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-    }
-  }
-
-  showWindow() {
-
+  viewShowOrHidden() {
+    animateTo({ duration: 600 }, () => {
+      this.isShow = !this.isShow
+    })
   }
 
   showToast() {

@@ -39,19 +39,36 @@ struct EmptyPage {
     // 组件添加时从底部滑出，透明度从0到1.0
     .transition({ type: TransitionType.Insert, translate: { x: 0, y: -500, z: 0 }, opacity: 1.0 })
     // 组件移除从底部滑出，透明度从1.0到0
-    .transition({ type: TransitionType.Delete, translate: { x: 0, y: -500, z: 0 }, opacity: 0 })
+    .transition({ type: TransitionType.Delete, translate: { x: 100, y: -500, z: 0 }, opacity: 1.0 })
+  }
+
+  @Builder
+  myAlert() {
+    MyAlertComponent().width(100).height(60)
   }
 
   build() {
     Column() {
-      if (this.isShow) {
-        // Stack({ alignContent: Alignment.Top }) {
-        this.subviewsBuilder()
-        // }
-      }
-    }
+      Stack({ alignContent: Alignment.Top }) {
+        if (this.isShow) {
+          this.subviewsBuilder()
+        }
 
-    // .backgroundColor('#889234')
+        // Button('显示/隐藏').width(100).height(40).onClick(() => {
+        //  animateTo({duration:600},()=>{
+        //    this.isShow = !this.isShow
+        //  })
+        // })
+      }.width('100%').height(200)
+
+      // Stack({ alignContent: Alignment.Top }) {
+      //   if (this.isShow) {
+      //     this.subviewsBuilder()
+      //   }
+      // }
+
+    }
+    .backgroundColor('#889234')
     .width('100%').height('100%')
   }
 
@@ -61,8 +78,45 @@ struct EmptyPage {
     })
   }
 
+  // onPageHide(): void {
+  //   animateTo({ duration: 600 }, () => {
+  //     this.isShow = !this.isShow
+  //   })
+  // }
+
   close() {
-    let currentWindow = window.findWindow("MyAlertWindow")
+    animateTo({
+      duration: 600,
+      onFinish: () => {
+        this.destroyWindow()
+    } }, () => {
+      this.isShow = false
+    })
+
+    // animateTo({
+    //   duration: 600, delay: 600, onFinish: () => {
+    //     /*动画结束后，销毁window*/
+    //     let currentWindow = window.findWindow("MyAlertWindow")
+    //     currentWindow?.destroyWindow((err) => {
+    //       if (err.code) {
+    //         console.error('Failed to close the window. Cause: ' + JSON.stringify(err));
+    //         return;
+    //       }
+    //       console.info('Succeeded in closing the window.');
+    //     })
+    //   }
+    //
+    // }, () => {
+    //   /*执行动画隐藏内容*/
+    //   // animateTo({ duration: 600 }, () => {
+    //   //   this.isShow = !this.isShow
+    //   // })
+    // })
+  }
+
+  destroyWindow(){
+    /*动画结束后，销毁window*/
+        let currentWindow = window.findWindow("MyAlertWindow")
     currentWindow?.destroyWindow((err) => {
       if (err.code) {
         console.error('Failed to close the window. Cause: ' + JSON.stringify(err));
@@ -71,21 +125,4 @@ struct EmptyPage {
       console.info('Succeeded in closing the window.');
     })
   }
-
-  // onPageShow(): void {
-  //
-  //   // animateTo({
-  //   //   duration: 2000,
-  //   //   curve: Curve.EaseOut,
-  //   //   iterations: 1,
-  //   //   playMode: PlayMode.Normal,
-  //   //   onFinish: () => {
-  //   //     console.info('play end')
-  //   //   }
-  //   // }, () => {
-  //   //   this.widthSize = 200;
-  //   //   this.heightSize = 200;
-  //   // })
-  // }
-
 }

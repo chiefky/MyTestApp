@@ -14,8 +14,8 @@ struct DialogEmptyPage {
   @Builder
   subviewsBuilder() {
     Row({ space: 5 }) {
-
-      Text('Hello World!').width(200).height(60).backgroundColor('#ffb86565')
+      // Text('Hello World!').width(200).height(60).backgroundColor('#ffb86565')
+      MyAlertComponent().width(200).height(60)
       Button("close").width(80).height(60).onClick(()=>{
         this.close()
       })
@@ -42,6 +42,7 @@ export interface MyDialogControllerOption {
   builder: CustomBuilder
   cancel: () => void
   confirm: () => void
+
 }
 
 
@@ -49,14 +50,15 @@ export class MyDialogController {
   CustomDialogName: string = 'WINDOW_DIALOG_CUSTOM';
   options: MyDialogControllerOption
   builder: CustomBuilder
-
+  component:()=>void
   // constructor(options: MyDialogControllerOption) {
   //   this.options = options
   //  this.customBuilder = options.builder
   // }
-  constructor(options: MyDialogControllerOption) {
+  constructor(component:()=>void, options: MyDialogControllerOption) {
     this.options = options
     this.builder = options.builder
+    this.component = component
   }
 
   open() {
