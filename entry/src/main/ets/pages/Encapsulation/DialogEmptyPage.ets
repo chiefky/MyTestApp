@@ -101,6 +101,7 @@ export class MyDialogController {
           }
           console.info('Succeeded in moving the window.');
         });
+
         sub_windowClass.resize(screen.width, 250, (err) => {
           if (err.code) {
             console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
@@ -112,7 +113,7 @@ export class MyDialogController {
         let para:Record<string, MyDialogController> = { 'MyDialogController': this};
         let localStorage: LocalStorage = new LocalStorage(para)
         // 3.为子窗口加载对应的目标页面。
-        sub_windowClass.loadContent("pages/Encapsulation/DialogEmptyPage", localStorage, (err) => {
+        sub_windowClass.loadContent("pages/Encapsulation/DialogEmptyPageOffSet", localStorage, (err) => {
           if (err.code) {
             console.error('Failed to load the content. Cause:' + JSON.stringify(err));
             return;

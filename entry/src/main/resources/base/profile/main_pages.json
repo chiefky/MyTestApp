@@ -4,6 +4,7 @@
     "pages/CustomDialogUser",
     "pages/BrokerToast",
     "pages/tmp/EmptyPage",
-    "pages/Encapsulation/DialogEmptyPage"
+    "pages/Encapsulation/DialogEmptyPage",
+    "pages/Encapsulation/DialogEmptyPageOffSet"
   ]
 }
