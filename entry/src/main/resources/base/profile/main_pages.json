@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
+    "pages/IndexFloatLayer",
     "pages/CustomDialogUser",
     "pages/BrokerToast",
     "pages/tmp/EmptyPage",
