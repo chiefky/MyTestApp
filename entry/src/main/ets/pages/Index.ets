@@ -55,7 +55,7 @@ struct Index {
   myAlert() {
     BrokerToast({
       cancel: this.onCancel.bind(this)
-    }).width('100%').height(100)
+    })
   }
 
   build() {

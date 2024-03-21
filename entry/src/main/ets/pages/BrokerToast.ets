@@ -70,14 +70,10 @@ export default struct BrokerToast {
         .fontColor(Color.White)
 
     }
-    // .backgroundColor('#fff445')
-    .padding({ top: 10, bottom: 10 })
+    .backgroundColor('#fff6e6ca')
+    .padding(10)
+    .border({radius:10})
     .justifyContent(FlexAlign.Start)
     .alignItems(VerticalAlign.Center)
-    // 组件添加时从底部滑出，透明度从0到1.0
-    .transition({ type: TransitionType.Insert, translate: { x: 0, y: -500, z: 0 }, opacity: 1.0 })
-    // 组件移除从底部滑出，透明度从1.0到0
-    .transition({ type: TransitionType.Delete, translate: { x: 0, y: -500, z: 0 }, opacity: 0 })
-    // dialog默认的borderRadius为24vp，如果需要使用border属性，请和borderRadius属性一起使用。
   }
 }

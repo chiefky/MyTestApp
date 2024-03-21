@@ -6,7 +6,7 @@ struct DialogEmptyPageOffSet {
   @State widthSize: number = 100
   @State heightSize: number = 100
   @State isShow: boolean = false
-  @State offsetY: number = -100
+  @State offsetY: number = -200
   controller?: MyDialogController = undefined
   @BuilderParam child?: () => void;
 
@@ -25,8 +25,7 @@ struct DialogEmptyPageOffSet {
 
   build() {
     Column() {
-      if (this.isShow) {
-       Row(){
+      Column(){
          if (typeof this.child === 'function') {
            this.child()
          }
@@ -34,19 +33,18 @@ struct DialogEmptyPageOffSet {
        .width('90%')
        .height(200)
        .offset({y:this.offsetY})
-      }
     }
     .backgroundColor('#008a8787')
     .width('100%').height('100%')
   }
 
   onPageShow(): void {
-    animateTo({ duration: 300 }, () => {
-      // this.isShow = true
-      this.offsetY = 100
-
-    })
-
+    setTimeout(()=>{
+      animateTo({ duration: 300 }, () => {
+        // this.isShow = true
+        this.offsetY = 100
+      })
+    }, 100);
   }
 
   closePage() {
