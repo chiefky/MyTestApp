@@ -27,9 +27,14 @@ struct Index {
   animationController: CustomDialogController = new CustomDialogController({
     builder: this.myAlert,
     cancel: this.exitApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Top,/*弹窗在竖直方向上的对齐方式。*/
+    offset: { dx: 0, dy: 100 },/*弹窗相对alignment所在位置的偏移量。*/
+    gridCount: 4,/*弹窗宽度占栅格宽度的个数。*/
+    customStyle: false,
     openAnimation: {
       duration: 2000, onFinish: () => {
-
+        this.myAlert
       }
     },
     closeAnimation: {
@@ -37,6 +42,7 @@ struct Index {
       }
     }
   })
+
   diaController: MyDialogController = new MyDialogController(this.myAlert.bind(this), this.onCancel)
   onCancel() {
     this.diaController.close()
