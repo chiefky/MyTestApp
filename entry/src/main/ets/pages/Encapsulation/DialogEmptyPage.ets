@@ -114,15 +114,14 @@ export class MyDialogController {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         let screen = display.getDefaultDisplaySync()
-        // sub_windowClass.moveWindowTo(500, 180, (err) => {
-        //   if (err.code) {
-        //     console.error('Failed to move the window. Cause:' + JSON.stringify(err));
-        //     return;
-        //   }
-        //   console.info('Succeeded in moving the window.');
-        // });
-
-        sub_windowClass.resize(screen.width, screen.height, (err) => {
+        sub_windowClass.moveWindowTo(screen.width*0.1, 180, (err) => {
+          if (err.code) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in moving the window.');
+        });
+        sub_windowClass.resize(screen.width, 250, (err) => {
           if (err.code) {
             console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
             return;
